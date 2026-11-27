@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="logo"></span>Cue Bridge</div>
+    <div class="state"><span id="dot" class="dot idle"></span><span id="status">Not connected</span></div>
+  </header>
+
+  <section class="row">
+    <button id="connect" class="primary">Connect</button>
+    <button id="sync" disabled>Sync now</button>
+    <button id="toggleSettings" class="quiet">Connection…</button>
+  </section>
+
+  <section id="settings" class="card hidden">
+    <label>Pairing code
+      <input id="token" type="text" placeholder="From Cue › Settings › Connection" />
+    </label>
+    <div class="row">
+      <label class="grow">Host <input id="host" type="text" /></label>
+      <label class="port">Port <input id="port" type="text" /></label>
+    </div>
+    <p class="hint">Changing the port also needs a matching entry in this plugin's manifest.json.</p>
+  </section>
+
+  <section class="card">
+    <div class="title">Capture preset</div>
+    <p class="hint">Select a clip with your effects &amp; keyframes, name it, capture. It appears in Cue's search as a preset.</p>
+    <div class="row">
+      <input id="presetName" class="grow" type="text" placeholder="Preset name" />
+      <button id="capture" disabled>Capture</button>
+    </div>
+  </section>
+
+  <div class="title pad">Activity</div>
+  <div id="log"></div>
+
+  <script src="js/premiere.js"></script>
+  <script src="js/presets.js"></script>
+  <script src="js/bridge.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

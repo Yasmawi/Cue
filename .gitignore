@@ -1,0 +1,7 @@
+app/.build/
+app/build/
+plugin/node_modules/
+*.ccx
+Cue.zip
+.DS_Store
+.swiftpm/

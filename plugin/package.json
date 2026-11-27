@@ -1,0 +1,12 @@
+{
+  "name": "cue-bridge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cue Bridge UXP plugin for Premiere Pro (tests only; the plugin itself needs no build)",
+  "scripts": {
+    "test": "node test/run.js && node test/e2e.js"
+  },
+  "devDependencies": {
+    "ws": "^8.23.0"
+  }
+}

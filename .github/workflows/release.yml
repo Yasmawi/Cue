@@ -1,0 +1,47 @@
+name: Release
+
+# Builds Cue.app + CueBridge.ccx and publishes a GitHub release.
+# Run it from the Actions tab ("Run workflow", enter a version like v1.0.1),
+# or push a tag like v1.0.1.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version tag, e.g. v1.0.1"
+        required: true
+      replace:
+        description: "Replace this version if it already exists (deletes the old release and tag)"
+        type: boolean
+        default: false
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    env:
+      VERSION: ${{ github.event.inputs.version || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build the app
+        working-directory: app
+        run: ./build.sh
+      - name: Package
+        run: |
+          ditto -c -k --keepParent app/build/Cue.app Cue.zip
+          plugin/make-ccx.sh
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPLACE: ${{ github.event.inputs.replace }}
+        run: |
+          if [ "$REPLACE" = "true" ] && gh release view "$VERSION" >/dev/null 2>&1; then
+            gh release delete "$VERSION" --cleanup-tag --yes
+          fi
+          gh release create "$VERSION" Cue.zip CueBridge.ccx \
+            --target "$GITHUB_SHA" \
+            --title "Cue $VERSION" \
+            --notes-file CHANGELOG.md

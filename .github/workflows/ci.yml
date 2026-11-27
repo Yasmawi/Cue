@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  plugin-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Run plugin tests
+        working-directory: plugin
+        run: |
+          npm install --no-audit --no-fund
+          npm test
+
+  mac-app:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build Cue.app
+        working-directory: app
+        run: ./build.sh

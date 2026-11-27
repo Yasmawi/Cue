@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  padding: 10px;
+  font-size: 12px;
+  color: #e3e3e3;
+  background: #232323;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.brand { font-weight: 700; font-size: 13px; display: flex; align-items: center; }
+.logo { width: 12px; height: 12px; border-radius: 3px; background: #7c5cff; margin-right: 7px; }
+.state { display: flex; align-items: center; color: #a8a8a8; }
+.dot { width: 8px; height: 8px; border-radius: 4px; margin-right: 6px; background: #666; }
+.dot.authed { background: #3ecf8e; }
+.dot.connecting, .dot.open, .dot.waiting { background: #f5a524; }
+.dot.rejected { background: #f2555a; }
+.row { display: flex; align-items: flex-end; margin-bottom: 8px; }
+.row > * { margin-right: 6px; }
+.row > *:last-child { margin-right: 0; }
+.grow { flex: 1; }
+.port { width: 70px; }
+button {
+  background: #3a3a3a; color: #e3e3e3; border: 1px solid #4a4a4a; border-radius: 5px;
+  padding: 5px 10px; font-size: 12px;
+}
+button.primary { background: #7c5cff; border-color: #7c5cff; color: #fff; }
+button.quiet { background: transparent; border-color: transparent; color: #a8a8a8; }
+button:disabled { opacity: 0.45; }
+input {
+  background: #1b1b1b; color: #e3e3e3; border: 1px solid #444; border-radius: 5px;
+  padding: 5px 7px; font-size: 12px; width: 100%; box-sizing: border-box;
+}
+label { display: block; color: #a8a8a8; font-size: 11px; margin-bottom: 6px; }
+label input { margin-top: 3px; }
+.card { background: #2b2b2b; border: 1px solid #353535; border-radius: 8px; padding: 9px; margin-bottom: 10px; }
+.title { font-weight: 600; margin-bottom: 5px; }
+.title.pad { margin: 2px 2px 6px; }
+.hint { color: #8d8d8d; font-size: 11px; margin: 0 0 7px; line-height: 15px; }
+.hidden { display: none; }
+#log { font-family: Menlo, monospace; font-size: 10.5px; color: #b5b5b5; }
+.log-row { padding: 3px 2px; border-bottom: 1px solid #2c2c2c; }
+.log-row.ok { color: #8fe3b8; }
+.log-row.warn { color: #f5c46b; }
+.log-row.error { color: #ff8a8e; }
